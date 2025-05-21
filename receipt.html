@@ -25,24 +25,24 @@
 
         .receipt-container {
             width: 400px;
-            height: auto; /* Let the container height adjust to content */
+            height: auto;
             background: #ffffff;
             border: 1px solid #e0e0e0;
             border-radius: 8px;
             box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
-            overflow: hidden; /* Remove scrolling */
+            overflow: hidden;
         }
 
         .receipt-header {
             background: #003087;
             color: white;
-            padding: 0.8rem; /* Reduced padding for compactness */
+            padding: 0.8rem;
             text-align: center;
             border-bottom: 4px solid #ffd700;
         }
 
         .receipt-title {
-            font-size: 1.2rem; /* Slightly reduced for better fit */
+            font-size: 1.2rem;
             font-weight: 700;
             display: flex;
             align-items: center;
@@ -57,7 +57,7 @@
         }
 
         .receipt-subtitle {
-            font-size: 0.75rem; /* Reduced for compactness */
+            font-size: 0.75rem;
             font-weight: 300;
             opacity: 0.9;
         }
@@ -65,7 +65,7 @@
         .top-details {
             display: flex;
             justify-content: space-between;
-            padding: 0.6rem; /* Reduced padding */
+            padding: 0.6rem;
             background: #f8f9fa;
             border-bottom: 1px solid #e0e0e0;
         }
@@ -74,18 +74,18 @@
             display: flex;
             flex-direction: column;
             align-items: center;
-            gap: 0.15rem; /* Reduced gap */
+            gap: 0.15rem;
             flex: 1;
         }
 
         .top-details .detail-key {
-            font-size: 0.65rem; /* Reduced font size */
+            font-size: 0.65rem;
             color: #666;
             font-weight: 400;
         }
 
         .top-details .detail-value {
-            font-size: 0.8rem; /* Reduced font size */
+            font-size: 0.8rem;
             font-weight: 600;
             color: #003087;
         }
@@ -93,31 +93,31 @@
         .payout-code {
             background: #ffd700;
             color: #003087;
-            padding: 0.15rem 0.5rem; /* Reduced padding */
+            padding: 0.15rem 0.5rem;
             border-radius: 4px;
             font-weight: 700;
         }
 
         .receipt-body {
-            padding: 0.8rem; /* Reduced padding */
+            padding: 0.8rem;
         }
 
         .receipt-section {
-            margin-bottom: 0.8rem; /* Reduced margin */
+            margin-bottom: 0.8rem;
             text-align: center;
         }
 
         .section-title {
-            font-size: 0.95rem; /* Reduced font size */
+            font-size: 0.95rem;
             font-weight: 500;
             color: #003087;
-            margin-bottom: 0.6rem; /* Reduced margin */
-            padding-bottom: 0.3rem; /* Reduced padding */
+            margin-bottom: 0.6rem;
+            padding-bottom: 0.3rem;
             border-bottom: 1px solid #e0e0e0;
             display: flex;
             align-items: center;
             justify-content: center;
-            gap: 0.3rem; /* Reduced gap */
+            gap: 0.3rem;
         }
 
         .section-title svg {
@@ -129,8 +129,8 @@
             display: flex;
             justify-content: space-between;
             max-width: 280px;
-            margin: 0 auto 0.4rem; /* Reduced margin */
-            font-size: 0.8rem; /* Reduced font size */
+            margin: 0 auto 0.4rem;
+            font-size: 0.8rem;
         }
 
         .detail-key {
@@ -152,10 +152,10 @@
 
         .receipt-footer {
             text-align: center;
-            padding: 0.6rem; /* Reduced padding */
+            padding: 0.6rem;
             background: #f8f9fa;
             border-top: 1px solid #e0e0e0;
-            font-size: 0.7rem; /* Reduced font size */
+            font-size: 0.7rem;
             color: #666;
         }
 
@@ -163,19 +163,19 @@
             background: #003087;
             color: white;
             border: none;
-            padding: 0.5rem; /* Reduced padding */
+            padding: 0.5rem;
             border-radius: 6px;
             font-weight: 500;
             cursor: pointer;
             transition: all 0.2s;
-            font-size: 0.8rem; /* Reduced font size */
+            font-size: 0.8rem;
             width: 100%;
             max-width: 280px;
-            margin: 0.6rem auto; /* Reduced margin */
+            margin: 0.6rem auto;
             display: flex;
             align-items: center;
             justify-content: center;
-            gap: 0.3rem; /* Reduced gap */
+            gap: 0.3rem;
         }
 
         .download-btn:hover {
@@ -199,8 +199,8 @@
             .receipt-container {
                 box-shadow: none;
                 border: none;
-                height: auto; /* Ensure height adjusts for print */
-                overflow: hidden; /* Ensure no scrolling in print */
+                height: auto;
+                overflow: hidden;
             }
         }
     </style>
@@ -210,7 +210,7 @@
         <div class="receipt-header">
             <div class="receipt-title">
                 <img src="https://flagcdn.com/w40/bd.png" alt="Bangladesh Flag">
-                Bangladesh 
+                Bangladesh Remittance
             </div>
             <div class="receipt-subtitle">Transaction Receipt</div>
         </div>
@@ -334,7 +334,7 @@
             serviceFee: params.get('serviceFee') ? `${params.get('serviceFee')}` : 'N/A',
             totalPaid: params.get('totalPaid') ? `${params.get('totalPaid')}` : 'N/A',
             payoutAmount: params.get('amount') ? `${params.get('amount')} BDT` : 'N/A',
-            exchangeRate: params.get('exchangeRate') ? `1 ${params.get('fromCurrency') || 'BND'} = ${params.get('exchangeRate')} ` : 'N/A',
+            exchangeRate: params.get('exchangeRate') ? `1 ${params.get('fromCurrency') || 'BND'} = ${params.get('exchangeRate')} BDT` : 'N/A', // Changed USD to BND, removed duplicate BDT
             beneficiaryName: params.get('beneficiaryName') || 'N/A',
             beneficiaryMobile: params.get('beneficiaryMobile') || 'N/A',
             bankName: params.get('bankName') || 'N/A',
