@@ -251,7 +251,7 @@
                     <div class="detail-value amount-highlight" id="totalPaid"></div>
                 </div>
                 <div class="detail-row">
-                    <div class="detail-key">Recipient Gets</div>
+                    <div class="detail-key">Recipient receives</div>
                     <div class="detail-value amount-highlight" id="payoutAmount"></div>
                 </div>
                 <div class="detail-row">
@@ -334,7 +334,7 @@
             serviceFee: params.get('serviceFee') ? `${params.get('serviceFee')}` : 'N/A',
             totalPaid: params.get('totalPaid') ? `${params.get('totalPaid')}` : 'N/A',
             payoutAmount: params.get('amount') ? `${params.get('amount')} BDT` : 'N/A',
-            exchangeRate: params.get('exchangeRate') ? `1 ${params.get('fromCurrency') || 'BND'} = ${params.get('exchangeRate')} BDT` : 'N/A', // Changed USD to BND, removed duplicate BDT
+            exchangeRate: params.get('exchangeRate') ? `1 ${params.get('fromCurrency') || 'BND'} = ${params.get('exchangeRate')} ` : 'N/A', 
             beneficiaryName: params.get('beneficiaryName') || 'N/A',
             beneficiaryMobile: params.get('beneficiaryMobile') || 'N/A',
             bankName: params.get('bankName') || 'N/A',
