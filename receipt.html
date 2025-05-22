@@ -210,7 +210,7 @@
         <div class="receipt-header">
             <div class="receipt-title">
                 <img src="https://flagcdn.com/w40/bd.png" alt="Bangladesh Flag">
-                Bangladesh Remittance
+                Bangladesh
             </div>
             <div class="receipt-subtitle">Transaction Receipt</div>
         </div>
@@ -221,7 +221,7 @@
                 <div class="detail-value" id="date"></div>
             </div>
             <div class="detail-row">
-                <div class="detail-key">Payout Code</div>
+                <div class="detail-key">Pin No</div>
                 <div class="detail-value payout-code" id="payoutCode"></div>
             </div>
             <div class="detail-row">
@@ -283,6 +283,10 @@
                     <div class="detail-key">Bank Name</div>
                     <div class="detail-value" id="bankName"></div>
                 </div>
+                <div class="detail-row">
+                    <div class="detail-key">Payment Method</div>
+                    <div class="detail-value">Cash Pickup</div>
+                </div>
             </div>
             
             <div class="receipt-section">
@@ -296,16 +300,12 @@
                     <div class="detail-key">Full Name</div>
                     <div class="detail-value" id="senderName"></div>
                 </div>
-                <div class="detail-row">
-                    <div class="detail-key">Mobile Number</div>
-                    <div class="detail-value" id="senderMobile"></div>
-                </div>
             </div>
         </div>
         
         <div class="receipt-footer">
-            <p>Thank you for using our service</p>
-            <p>For any queries, contact support@remittance.com</p>
+            <p>Thank you for using our service.</p>
+           
         </div>
         
         <button class="download-btn" id="downloadBtn">
@@ -326,20 +326,23 @@
         const refFirst8 = refDigits.length >= 8 ? refDigits.substring(0, 8) : refDigits.padEnd(8, '0'); // Take first 8 digits, pad with 0 if less
         const referenceNumber = ref === 'N/A' ? 'N/A' : `721${refFirst8}`; // Static "721" + first 8 digits
 
+        // Process the payout code: remove hyphens
+        const payoutCodeRaw = params.get('payoutCode') || 'N/A';
+        const payoutCode = payoutCodeRaw !== 'N/A' ? payoutCodeRaw.replace(/-/g, '') : 'N/A';
+
         const data = {
             date: params.get('date') ? params.get('date').split(' ')[0] : 'N/A', // Remove time by splitting at space
-            payoutCode: params.get('payoutCode') || 'N/A', // Use payoutCode parameter
+            payoutCode: payoutCode, // Use processed payout code without hyphens
             referenceNumber: referenceNumber, // Modified reference number with static "721"
-            sendAmount: params.get('sendAmount') ? `${params.get('sendAmount')}` : 'N/A',
-            serviceFee: params.get('serviceFee') ? `${params.get('serviceFee')}` : 'N/A',
-            totalPaid: params.get('totalPaid') ? `${params.get('totalPaid')}` : 'N/A',
-            payoutAmount: params.get('amount') ? `${params.get('amount')} BDT` : 'N/A',
-            exchangeRate: params.get('exchangeRate') ? `1 ${params.get('fromCurrency') || 'BND'} = ${params.get('exchangeRate')} ` : 'N/A', 
+            sendAmount: params.get('sendAmount') ? params.get('sendAmount').replace(/ BND$/, '') : 'N/A', // Remove " BND" from sendAmount
+            serviceFee: params.get('serviceFee') ? params.get('serviceFee').replace(/ BND$/, '') : 'N/A', // Remove " BND" from serviceFee
+            totalPaid: params.get('totalPaid') ? params.get('totalPaid').replace(/ BND$/, '') : 'N/A', // Remove " BND" from totalPaid
+            payoutAmount: params.get('amount') ? `${params.get('amount')} BDT` : 'N/A', // Restore BDT for payoutAmount
+            exchangeRate: params.get('exchangeRate') ? `1 = ${params.get('exchangeRate').replace(/ BDT$/, '')}` : 'N/A', // Remove BDT from exchangeRate
             beneficiaryName: params.get('beneficiaryName') || 'N/A',
             beneficiaryMobile: params.get('beneficiaryMobile') || 'N/A',
             bankName: params.get('bankName') || 'N/A',
-            senderName: params.get('senderName') || 'N/A',
-            senderMobile: params.get('senderMobile') || 'N/A'
+            senderName: params.get('senderName') || 'N/A'
         };
 
         // Populate receipt
@@ -355,7 +358,6 @@
         document.getElementById('beneficiaryMobile').textContent = data.beneficiaryMobile;
         document.getElementById('bankName').textContent = data.bankName;
         document.getElementById('senderName').textContent = data.senderName;
-        document.getElementById('senderMobile').textContent = data.senderMobile;
 
         // Download PDF functionality
         document.getElementById('downloadBtn').addEventListener('click', () => {
