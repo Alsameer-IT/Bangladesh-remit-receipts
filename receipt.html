@@ -210,7 +210,7 @@
         <div class="receipt-header">
             <div class="receipt-title">
                 <img src="https://flagcdn.com/w40/bd.png" alt="Bangladesh Flag">
-                Bangladesh
+                Bangladesh 
             </div>
             <div class="receipt-subtitle">Transaction Receipt</div>
         </div>
@@ -273,7 +273,7 @@
                 </div>
                 <div class="detail-row">
                     <div class="detail-key">Country</div>
-                    <div class="detail-value">Bangladesh</div>
+                    <div class="detail-value">BANGLADESH</div>
                 </div>
                 <div class="detail-row">
                     <div class="detail-key">Mobile Number</div>
@@ -285,7 +285,7 @@
                 </div>
                 <div class="detail-row">
                     <div class="detail-key">Payment Method</div>
-                    <div class="detail-value">Cash Pickup</div>
+                    <div class="detail-value">CASH PICKUP</div>
                 </div>
             </div>
             
@@ -345,19 +345,19 @@
             senderName: params.get('senderName') || 'N/A'
         };
 
-        // Populate receipt
-        document.getElementById('date').textContent = data.date;
-        document.getElementById('payoutCode').textContent = data.payoutCode;
-        document.getElementById('referenceNumber').textContent = data.referenceNumber;
-        document.getElementById('sendAmount').textContent = data.sendAmount;
-        document.getElementById('serviceFee').textContent = data.serviceFee;
-        document.getElementById('totalPaid').textContent = data.totalPaid;
-        document.getElementById('payoutAmount').textContent = data.payoutAmount;
-        document.getElementById('exchangeRate').textContent = data.exchangeRate;
-        document.getElementById('beneficiaryName').textContent = data.beneficiaryName;
-        document.getElementById('beneficiaryMobile').textContent = data.beneficiaryMobile;
-        document.getElementById('bankName').textContent = data.bankName;
-        document.getElementById('senderName').textContent = data.senderName;
+        // Populate receipt with uppercase values
+        document.getElementById('date').textContent = data.date.toUpperCase();
+        document.getElementById('payoutCode').textContent = data.payoutCode.toUpperCase();
+        document.getElementById('referenceNumber').textContent = data.referenceNumber.toUpperCase();
+        document.getElementById('sendAmount').textContent = data.sendAmount.toUpperCase();
+        document.getElementById('serviceFee').textContent = data.serviceFee.toUpperCase();
+        document.getElementById('totalPaid').textContent = data.totalPaid.toUpperCase();
+        document.getElementById('payoutAmount').textContent = data.payoutAmount.toUpperCase();
+        document.getElementById('exchangeRate').textContent = data.exchangeRate.toUpperCase();
+        document.getElementById('beneficiaryName').textContent = data.beneficiaryName.toUpperCase();
+        document.getElementById('beneficiaryMobile').textContent = data.beneficiaryMobile.toUpperCase();
+        document.getElementById('bankName').textContent = data.bankName.toUpperCase();
+        document.getElementById('senderName').textContent = data.senderName.toUpperCase();
 
         // Download PDF functionality
         document.getElementById('downloadBtn').addEventListener('click', () => {
